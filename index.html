@@ -1,93 +1,17 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Extintomón · el Pokémon extintor que no para de bailar(grupo 9)</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <title>Buscador de Películas</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-  <main class="escenario">
-
-    <div class="foco foco-1"></div>
-    <div class="foco foco-2"></div>
-
-    <section class="dex" aria-label="Ficha Pokédex de Extintomón">
-
-      <header class="dex-cabecera">
-        <span class="dex-pill dex-numero">Nº 001</span>
-        <span class="dex-pill dex-tipo">🔥 Fuego/Acero</span>
-      </header>
-
-      <div class="pista-baile">
-        <div class="pista-suelo" aria-hidden="true"></div>
-
-        <div class="personaje-escala">
-          <div class="extintomon">
-
-            <div class="sombra"></div>
-
-            <div class="pierna pierna-izquierda"></div>
-            <div class="pierna pierna-derecha"></div>
-
-            <div class="cuerpo">
-              <div class="brillo-cuerpo"></div>
-
-              <div class="etiqueta-inspeccion">
-                <span></span><span></span><span></span>
-              </div>
-
-              <div class="manometro">
-                <div class="aguja"></div>
-              </div>
-
-              <div class="cara">
-                <div class="ojo ojo-izquierdo"><div class="brillo-ojo"></div></div>
-                <div class="ojo ojo-derecho"><div class="brillo-ojo"></div></div>
-                <div class="mejilla mejilla-izquierda"></div>
-                <div class="mejilla mejilla-derecha"></div>
-                <div class="boca"></div>
-              </div>
-            </div>
-
-            <div class="valvula">
-              <div class="agarre"></div>
-            </div>
-
-            <div class="brazo brazo-izquierdo">
-              <div class="manguera"></div>
-              <div class="boquilla"></div>
-            </div>
-
-            <div class="brazo brazo-derecho">
-              <div class="pasador"></div>
-            </div>
-
-          </div>
-        </div>
-
-        <div class="notas" aria-hidden="true">
-          <span class="nota nota-1">♪</span>
-          <span class="nota nota-2">♫</span>
-          <span class="nota nota-3">♪</span>
-          <span class="nota nota-4">♬</span>
-        </div>
-      </div>
-
-      <footer class="dex-pie">
-        <h1>Extintomón</h1>
-        <p>Se activa en cuanto detecta el bajo de una canción. Cuentan que apagó su primer incendio... bailando encima.</p>
-      </footer>
-
-    </section>
-
-  </main>
-
+    <main>
+        <h1>Buscador de Películas</h1>
+        <input type="text" id="buscador">
+        <button id="boton-buscar">Buscar</button>
+        <p id="resultado"></p>
+    </main>
+    <script src="script.js"></script>
 </body>
 </html>
