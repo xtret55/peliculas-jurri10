@@ -16,7 +16,4 @@ document.getElementById('boton-buscar').addEventListener('click', function() {
                 resultado.innerHTML = "Película no encontrada.";
             }
         })
-        .catch(error => {
-            console.error("Hubo un error en la petición:", error);
-        });
 });
