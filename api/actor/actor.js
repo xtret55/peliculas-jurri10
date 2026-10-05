@@ -9,8 +9,8 @@ router.post('/', async function(req, res){
     const name = req.body.name;
     const year = req.body.year;
 
-    await db.query('INSERT INTO actores (nombre_completo, anyo_nacimiento) VALUES (?, ?) ', [name, year]);
-    res.send('Actor creado');
+    const [result] = await db.query('INSERT INTO actores (nombre_completo, anyo_nacimiento) VALUES (?, ?) ', [name, year]);
+    res.status(201).json({message: 'Actor creado', id: result.insertId});
 
 });
 
@@ -23,8 +23,8 @@ router.put('/:id', async function(req, res){
     const name = req.body.name;
     const year = req.body.year;
 
-    await db.query('UPDATE actores SET combre_completo = ?, anyo_nacimiento = ? WHERE id = ?', [name, year, id]);
-    res.send('Actor modificado');
+    await db.query('UPDATE actores SET nombre_completo = ?, anyo_nacimiento = ? WHERE id = ?', [name, year, id]);
+    res.json({message: 'Actor modificado'});
 });
 
 //BORRAR ACTOR
@@ -34,7 +34,7 @@ router.delete('/:id', async function(req,res){
     const id = req.params.id;
 
     await db.query('DELETE FROM actores WHERE id = ?', [id]);
-    res.send('Actor borrado');
+    res.json({message: 'Actor borrado'});
 
 });
 

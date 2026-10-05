@@ -1,0 +1,11 @@
+Crear actor: curl -X POST http://localhost:3000/api/actor -H "Content-Type: application/json" -d '{"name": "Keanu Reeves", "year": 1964}'
+Borrar actor: curl -X DELETE http://localhost:3000/api/actor/1
+Modificar actor: curl -X PUT http://localhost:3000/api/actor/2 -H "Content-Type: application/json" -d '{"name": "Brad Pitt", "year": 1963}'
+
+Obtener pelicula por id: curl -X GET http://localhost:3000/api/pelicula/1
+Obtener pelicula por nombre: curl -X GET "http://localhost:3000/api/pelicula?nombre=Matrix"
+Crear pelicula: curl -X POST http://localhost:3000/api/pelicula -H "Content-Type: application/json" -d '{"name": "The Matrix", "year": 1999, "actores": [3, 2]}'
+Mod pelicula: curl -X PUT http://localhost:3000/api/pelicula/1 -H "Content-Type: application/json" -d '{"name": "The Matrix Reloaded", "year": 2003}'
++actor: curl -X POST http://localhost:3000/api/pelicula/1/actores -H "Content-Type: application/json" -d '{"actorId": 4}'
+-actor: curl -X DELETE http://localhost:3000/api/pelicula/1/actores/4
+Borrar pelicula: curl -X DELETE http://localhost:3000/api/pelicula/1
