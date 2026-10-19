@@ -1,9 +1,8 @@
-const express = require('express'); //Separar rutas para organizacion
+const express = require('express');
 const router = express.Router();
 
-const db = require ('../config/conex'); //Script para conexion con base de datos
+const db = require ('../config/conex');
 
-//CREAR ACTOR -> POST
 router.post('/', async function(req, res){
 
     const name = req.body.name;
@@ -14,7 +13,6 @@ router.post('/', async function(req, res){
 
 });
 
-//MODIFICAR ACTOR
 
 router.put('/:id', async function(req, res){
 
@@ -27,7 +25,6 @@ router.put('/:id', async function(req, res){
     res.json({message: 'Actor modificado'});
 });
 
-//BORRAR ACTOR
 
 router.delete('/:id', async function(req,res){
 

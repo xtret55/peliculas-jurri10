@@ -1,39 +1,36 @@
-const express = require('express'); //Separar rutas para organizacion
+const express = require('express');
 const router = express.Router();
 
-const db = require ('../config/conex'); //Script para conexion con base de datos
+const db = require ('../config/conex');
 
-//BUSCAR PELICULA
 router.get('/:id', async function (req, res){
 
     const id = req.params.id;
 
     const [result] = await db.query('SELECT * FROM peliculas WHERE id = ?', [id]);
-    const [actores] = await db.query('SELECT  * FROM actores JOIN peliculas_actores ON actores.id = peliculas_actores.actor_id WHERE peliculas_actores.pelicula_id = ?', [id]);
-    res.json(result[0], actores);  
+    const [actores] = await db.query('SELECT actores.* FROM actores JOIN peliculas_actores ON actores.id = peliculas_actores.actor_id WHERE peliculas_actores.pelicula_id = ?', [id]);
+    res.json({pelicula: result[0], actores});  
 });
 
 router.get('/', async function (req, res){
 
     const nombre = req.query.nombre;
 
-    const [result] = await db.query('SELECT * FROM peliculas WHERE nombre_completo LIKE ? LIMIT 1', [nombre]);
+    const [result] = await db.query('SELECT * FROM peliculas WHERE nombre LIKE ? LIMIT 1', [`%${nombre}%`]);
     const id = result[0].id;
-    const [actores] = await db.query('SELECT  * FROM actores JOIN peliculas_actores ON actores.id = peliculas_actores.actor_id WHERE peliculas_actores.pelicula_id = ?', [id]);
+    const [actores] = await db.query('SELECT actores.* FROM actores JOIN peliculas_actores ON actores.id = peliculas_actores.actor_id WHERE peliculas_actores.pelicula_id = ?', [id]);
 
-    res.json(result[0], actores);  
+    res.json({pelicula: result[0], actores});  
 });
 
 
-//CREAR PELICULA
-
-//CREAR PELICULA
 router.post('/', async function (req,res) {
     const name = req.body.name;
     const year = req.body.year;
     const actores = req.body.actores;
+    const categoriaId = req.body.categoriaId;
 
-    const [result] = await db.query('INSERT INTO peliculas (nombre, anyo_publicacion) VALUES (?, ?)', [name, year]);
+    const [result] = await db.query('INSERT INTO peliculas (nombre, anyo_publicacion, categoria_id) VALUES (?, ?, ?)', [name, year, categoriaId]);
     const id = result.insertId;
 
     for (const actorId of actores)  {
@@ -44,7 +41,6 @@ router.post('/', async function (req,res) {
 });
 
 
-//BORRAR PELICULAR
 
 router.delete('/:id', async function(req,res){
 
@@ -55,7 +51,6 @@ router.delete('/:id', async function(req,res){
 });
 
 
-//MODIFICAR PELICULA (Nombre, ano, +actor, -actor)
 
 router.put('/:id', async function(req,res){
 
@@ -72,7 +67,7 @@ router.post('/:id/actores', async function(req,res){
 
     const id = req.params.id;
 
-    const actorId = req.body;
+    const actorId = req.body.actorId;
 
     const [result] = await db.query ('INSERT INTO peliculas_actores (pelicula_id, actor_id) VALUES (?,?)', [id, actorId]);
     res.status(201).json({message: 'Actor anadido a pelicula'});
